@@ -67,7 +67,7 @@ def test_times_csv():
         # Load it back
         with open(tfname, 'r') as fdesc:
             for i, row in enumerate(csv.reader(fdesc, delimiter=sep)):
-                assert np.allclose(float(row[0]), times[i], atol=1e-3, rtol=1e-3)
+                assert np.allclose(float(row[0]), times[i], atol=1e-3, rtol=1e-3), (row, times)
 
                 if annotations is not None:
                     assert row[1] == annotations[i]
@@ -102,7 +102,7 @@ def test_annotation():
         # Load it back
         with open(tfname, 'r') as fdesc:
             for i, row in enumerate(csv.reader(fdesc, delimiter=sep)):
-                assert np.allclose([float(row[0]), float(row[1])], times[i], atol=1e-3, rtol=1e-3)
+                assert np.allclose([float(row[0]), float(row[1])], times[i], atol=1e-3, rtol=1e-3), (row, times)
 
                 if annotations is not None:
                     assert row[2] == annotations[i]
